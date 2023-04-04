@@ -1,0 +1,28 @@
+.row{padding-top:20px;}
+.main-box{
+  width:100%;
+  max-width: 360px;
+  margin: 0 auto;
+}
+.main-box input[type=text], .main-box input[type=number],input[type=password], .main-box select{
+    width: 320px;
+    padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #555;
+  }
+  .main-box input[type=button], .main-box input[type=submit], .main-box input[type=reset], button {
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  .create-account {
+     margin-top: 26px;
+  }
+.create-account a{
+  color: dodgerblue;
+}
