@@ -132,16 +132,16 @@ const JobPosting = () => {
     if (e.target.name == "date") setDate(e.target.value);
 
   }
-
+  let API_url = window.myGlobalVar ;
   useEffect(() => {
-    fetch("http://localhost:8888/dag-ats/officedata.php")
+    fetch(API_url + "officedata.php")
       .then((response) => response.json())
       .then((data) => setOptions(data));
   }, []);
 
   const handleofficehange = (event) => {
     setName(event.target.value)
-      fetch(`http://localhost:8888/dag-ats/officedetails.php?officeid=${event.target.value}`)
+      fetch(`${API_url}officedetails.php?officeid=${event.target.value}`)
       .then(response => response.json())
       .then(data => {
         setAddress(data.address);

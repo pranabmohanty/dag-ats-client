@@ -12,7 +12,7 @@ const Registration=(props)=>{
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [errors, setErrors] = useState({});
-
+  let API_url = window.myGlobalVar ;
   let navigate = useNavigate();
   var userrole = localStorage.getItem('role');
       const handleSubmit = (event) => {
@@ -49,7 +49,7 @@ const Registration=(props)=>{
         const form = event.target;
         const formData = new FormData(form);
         
-        fetch('http://localhost:8888/dag-ats/registration.php', {
+        fetch(API_url + 'registration.php', {
           method: 'POST',
           body: formData
         })

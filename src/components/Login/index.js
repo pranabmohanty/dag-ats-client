@@ -10,8 +10,12 @@ const Login=(props)=>{
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   let API_url = window.myGlobalVar ;
-  console.log(API_url);
+ 
+
     let navigate = useNavigate();
+
+
+    
     const handleSubmit = (event) => {
       event.preventDefault();
       // Perform form validation
@@ -38,7 +42,7 @@ const Login=(props)=>{
         const form = event.target;
         const formData = new FormData(form);
         
-        fetch(API_url + 'userlogin', {
+        fetch(API_url + 'userlogin.php', {
           method: 'POST',
           body: formData
         })
