@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
 import './index.css' ;
 
 const JobPosting = () => {
  
-  const [password, setPassword] = useState("");
-  const [gender, setGender] = useState("");
-
+  const [options, setOptions] = useState([]);
   const [jobtitle, setjobTitle] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
@@ -111,6 +110,48 @@ const JobPosting = () => {
     
   };
 
+  const handlechange = e => {
+    setErrors({});
+    if (e.target.name == "jobtitle") setjobTitle(e.target.value);
+    if (e.target.name == "name") setName(e.target.value);
+    if (e.target.name == "address") setAddress(e.target.value);
+    if (e.target.name == "rom") setRom(e.target.value);
+    if (e.target.name == "date") setDate(e.target.value);
+    if (e.target.name == "exp") setExp(e.target.value);
+    if (e.target.name == "payRange") setPayRange(e.target.value);
+    if (e.target.name == "fulltime") setFullTime(e.target.value);
+    if (e.target.name == "schedule") setSchedule(e.target.value);
+    if (e.target.name == "staffnum") setStaffNum(e.target.value);
+    if (e.target.name == "operation") setOperation(e.target.value);
+    if (e.target.name == "equipment") setEquipment(e.target.value);
+    if (e.target.name == "skills") setSkills(e.target.value);
+    if (e.target.name == "uniqLoc") setUniqLoc(e.target.value);
+    if (e.target.name == "offcdyn") setOffcDyn(e.target.value);
+    if (e.target.name == "jobdesc") setJobDesc(e.target.value);
+    if (e.target.name == "date") setDate(e.target.value);
+    if (e.target.name == "date") setDate(e.target.value);
+
+  }
+
+  useEffect(() => {
+    fetch("http://localhost:8888/dag-ats/officedata.php")
+      .then((response) => response.json())
+      .then((data) => setOptions(data));
+  }, []);
+
+  const handleofficehange = (event) => {
+    setName(event.target.value)
+      fetch(`http://localhost:8888/dag-ats/officedetails.php?officeid=${event.target.value}`)
+      .then(response => response.json())
+      .then(data => {
+        setAddress(data.address);
+        setRom(data.rom);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+  };
   return (
     <div className="job-posting-form-outer my-5 p-5">
       <div className="container job-posting-form-inner my-5 p-5">
@@ -122,7 +163,7 @@ const JobPosting = () => {
                 id="jobtitle"
                 name="jobtitle"
                 value={jobtitle}
-                onChange={(e) => setjobTitle(e.target.value)}>
+                onChange={(e) => handlechange(e)}>
                 <option value="">Select Job Title</option>
                 <option value="Dental Assistant">Dental Assistant	</option>
                 <option value="dentist">Dentist</option>
@@ -138,13 +179,19 @@ const JobPosting = () => {
 
             <div className="col-sm-6">
               <label htmlFor="name">Name of Office</label>
-              <input
+              {/* <input
                 type="text"
                 id="name"
                 name="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-              />
+              /> */}
+              <select name="office_name" value={name} onChange={handleofficehange} >
+                <option value="">Select an option</option>
+                {options.map((item) => (
+                  <option key={item.id} value={item.id}>{item.office}</option>
+                ))}
+              </select>
               {errors.name && <div className="error">{errors.name}</div>}
             </div>
 

@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+window.myGlobalVar = 'http://localhost:8888/dag-ats/';
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

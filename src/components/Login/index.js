@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {BrowserRouter as Router, Routes,Route,Link} from 'react-router-dom';
 import {
     useNavigate 
@@ -6,13 +6,39 @@ import {
 
 //import Dashboard from "../../Dashboard";
 const Login=(props)=>{
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
+  let API_url = window.myGlobalVar ;
+  console.log(API_url);
     let navigate = useNavigate();
     const handleSubmit = (event) => {
-        event.preventDefault();
+      event.preventDefault();
+      // Perform form validation
+    let errors = {};
+
+   
+    if (!email.trim()) {
+      errors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      errors.email = "Email is invalid";
+    }
+
+    if (!password.trim()) {
+      errors.password = "Password is required";
+    } else if (password.trim().length < 8) {
+      errors.password = "Password should be at least 8 characters";
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setErrors(errors);
+      return;
+    }
+        
         const form = event.target;
         const formData = new FormData(form);
         
-        fetch('http://localhost:8888/dag-ats/userlogin.php', {
+        fetch(API_url + 'userlogin', {
           method: 'POST',
           body: formData
         })
@@ -36,12 +62,16 @@ const Login=(props)=>{
         </div>
             <div className="row">
                 <div className="col-md-6">
-                  <input type="text" name="email" placeholder="Email" className="form-control" />
+                  <input type="text" name="email" placeholder="Email" className="form-control" 
+                  onChange={(event) => setEmail(event.target.value)} />
+                  {errors.email && <div className="error">{errors.email}</div>}
                 </div>
             </div>
             <div className="row">
                 <div className="col-md-6">
-                <input type="password" name="password" placeholder="Password"  className="form-control" />
+                <input type="password" name="password" placeholder="Password"  className="form-control"
+                 onChange={(event) => setPassword(event.target.value)} />
+                 {errors.password && <div className="error">{errors.password}</div>}
                 </div>
             </div>
             <div className="row">
@@ -51,7 +81,7 @@ const Login=(props)=>{
             </div>
             </form>
             <div className="create-account">
-                <Link to="/register"  class="nav-link active">Create an account</Link>
+                <Link to="/register"  className="nav-link active">Create an account</Link>
             </div>
         </div>
     )

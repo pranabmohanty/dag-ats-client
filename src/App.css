@@ -4,8 +4,11 @@
   max-width: 360px;
   margin: 0 auto;
 }
+.main-box .col-md-6{
+  width: 100%;
+}
 .main-box input[type=text], .main-box input[type=number],input[type=password], .main-box select{
-    width: 320px;
+    width: 360px;
     padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
@@ -25,4 +28,7 @@
   }
 .create-account a{
   color: dodgerblue;
+}
+div.error{
+  color:#ff0000;
 }

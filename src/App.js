@@ -5,6 +5,8 @@ import Homepage from './Homepage';
 import Registration from './components/Registration';
 import Login from './components/Login';
 import JobPosting from './components/JobPosting';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 import {BrowserRouter as Router, Routes,Route } from 'react-router-dom'; 
 function App() {
   return (
@@ -13,7 +15,7 @@ function App() {
     
       <Routes>
          <Route path="/" element={<Homepage/>} />
-         {/* <Route path="/login" element={<Login/>} />*/}
+         <Route path="/login" element={<Login/>} />
          <Route path="/register" element={<Registration/>} /> 
          <Route path="/dashboard" element={<Dashboard/>} />
       </Routes> 
