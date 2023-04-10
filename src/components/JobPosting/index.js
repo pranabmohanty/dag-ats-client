@@ -134,14 +134,14 @@ const JobPosting = () => {
   }
   let API_url = window.myGlobalVar ;
   useEffect(() => {
-    fetch(API_url + "officedata.php")
+    fetch(API_url + "officedata")
       .then((response) => response.json())
       .then((data) => setOptions(data));
   }, []);
 
   const handleofficehange = (event) => {
     setName(event.target.value)
-      fetch(`${API_url}officedetails.php?officeid=${event.target.value}`)
+      fetch(`${API_url}officedetails/${event.target.value}`)
       .then(response => response.json())
       .then(data => {
         setAddress(data.address);
@@ -186,7 +186,7 @@ const JobPosting = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               /> */}
-              <select name="office_name" value={name} onChange={handleofficehange} >
+              <select name="office" value={name} onChange={handleofficehange} >
                 <option value="">Select an option</option>
                 {options.map((item) => (
                   <option key={item.id} value={item.id}>{item.office}</option>
@@ -224,7 +224,7 @@ const JobPosting = () => {
               <input
                 type="date"
                 id="date"
-                name="date"
+                name="request_date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
               />
@@ -236,7 +236,7 @@ const JobPosting = () => {
               <input
                 type="text"
                 id="exp"
-                name="exp"
+                name="experience"
                 value={exp}
                 onChange={(e) => setExp(e.target.value)}
               />
@@ -248,7 +248,7 @@ const JobPosting = () => {
               <input
                 type="text"
                 id="payRange"
-                name="payRange"
+                name="pay_range"
                 value={payRange}
                 onChange={(e) => setPayRange(e.target.value)}
               />
@@ -260,7 +260,7 @@ const JobPosting = () => {
               <input
                 type="text"
                 id="fulltime"
-                name="fulltime"
+                name="job_time"
                 value={fulltime}
                 onChange={(e) => setFullTime(e.target.value)}
               />
@@ -284,7 +284,7 @@ const JobPosting = () => {
               <input
                 type="text"
                 id="staffnum"
-                name="staffnum"
+                name="staff_number"
                 value={staffnum}
                 onChange={(e) => setStaffNum(e.target.value)}
               />
@@ -296,7 +296,7 @@ const JobPosting = () => {
               <input
                 type="text"
                 id="operation"
-                name="operation"
+                name="no_of_ operatories"
                 value={operation}
                 onChange={(e) => setOperation(e.target.value)}
               />
@@ -336,7 +336,7 @@ const JobPosting = () => {
               <input
                 type="text"
                 id="uniqLoc"
-                name="uniqLoc"
+                name="location_details"
                 value={uniqLoc}
                 onChange={(e) => setUniqLoc(e.target.value)}
               />
@@ -348,7 +348,7 @@ const JobPosting = () => {
               <input
                 type="text"
                 id="offcdyn"
-                name="offcdyn"
+                name="office_dynamics"
                 value={offcdyn}
                 onChange={(e) => setOffcDyn(e.target.value)}
               />
@@ -359,7 +359,7 @@ const JobPosting = () => {
               <label htmlFor="jobdesc"> Job Description or anything else you want the recruiter to know or include at screening </label>
               <textarea
                 id="jobdesc"
-                name="jobdesc"
+                name="job_description"
                 value={jobdesc}
                 onChange={(e) => setJobDesc(e.target.value)}
                 rows={5}

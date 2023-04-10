@@ -42,7 +42,7 @@ const Login=(props)=>{
         const form = event.target;
         const formData = new FormData(form);
         
-        fetch(API_url + 'userlogin.php', {
+        fetch(API_url + 'login', {
           method: 'POST',
           body: formData
         })

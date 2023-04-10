@@ -49,7 +49,7 @@ const Registration=(props)=>{
         const form = event.target;
         const formData = new FormData(form);
         
-        fetch(API_url + 'registration.php', {
+        fetch(API_url + 'registration', {
           method: 'POST',
           body: formData
         })
