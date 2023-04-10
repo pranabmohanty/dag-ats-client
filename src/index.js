@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-window.myGlobalVar = 'http://43.204.177.186/';
+window.myGlobalVar = 'http://43.204.25.156/';
 
 ReactDOM.render(
   <React.StrictMode>
