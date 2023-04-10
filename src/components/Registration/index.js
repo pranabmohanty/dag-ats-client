@@ -112,7 +112,6 @@ const Registration=(props)=>{
               <div className="col-md-6">
               <select name="role"  onChange={(event) => handlechange(event)}>
                 <option value="">Select Role</option>
-                <option value="office_manager">Office Manager</option>
                 <option value="rom">ROM</option>
                 <option value="recruiter">Recruiter</option>
               </select>
