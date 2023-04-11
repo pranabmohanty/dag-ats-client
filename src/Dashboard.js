@@ -1,5 +1,6 @@
 import React from "react";
 import JobPosting from "./components/JobPosting";
+import JobListing from "./components/JobListing";
 
 const Dashboard=()=>{
    
@@ -8,8 +9,8 @@ const Dashboard=()=>{
     return(
         <div>
              {userrole ? (
-
-            <JobPosting/>
+               
+            userrole == 'recruiter' ? <JobPosting/> : <JobListing/>
 
             ) : (
 

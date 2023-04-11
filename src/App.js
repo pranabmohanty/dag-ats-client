@@ -5,6 +5,7 @@ import Homepage from './Homepage';
 import Registration from './components/Registration';
 import Login from './components/Login';
 import JobPosting from './components/JobPosting';
+import Header from './Header';
 import Thankyou from './Thankyou' ;
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
@@ -13,7 +14,7 @@ function App() {
   return (
      <Router>
   <div className='container'>
-    
+  <Header/>
       <Routes>
          <Route path="/" element={<Homepage/>} />
          <Route path="/login" element={<Login/>} />

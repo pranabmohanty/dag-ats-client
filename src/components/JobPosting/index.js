@@ -130,7 +130,7 @@ const JobPosting = () => {
   //   if (e.target.name == "date") setDate(e.target.value);
  
   // }
-  
+
   let API_url = window.myGlobalVar ;
   let navigate = useNavigate();
 
@@ -155,7 +155,7 @@ const JobPosting = () => {
         
         if(jobTitle == 2 || jobTitle == 5)
         {
-          setRom("Kelse");
+          setRom("Kelsea");
 
         }else{
           setRom(data.rom);
@@ -172,7 +172,7 @@ const JobPosting = () => {
 
     if(event.target.value == 2 || event.target.value == 5)
     {
-      setRom("Kelse");
+      setRom("Kelsea");
 
     }else{
       setRom("");
@@ -234,7 +234,7 @@ const JobPosting = () => {
                 name="rom"
                 value={rom}
                 onChange={(e) => setRom(e.target.value)}
-              />
+                readOnly={true} />
               {errors.rom && <div className="error">{errors.rom}</div>}
             </div>
 

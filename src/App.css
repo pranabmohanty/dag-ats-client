@@ -36,3 +36,8 @@
   align-items: center;
   justify-content: center;
 }
+.navbar-text{
+    text-align: right;
+    display: block;
+    width: 100%;
+}
