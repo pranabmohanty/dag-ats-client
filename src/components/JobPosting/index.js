@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 import './index.css' ;
 
 const JobPosting = () => {
  
   const [options, setOptions] = useState([]);
-  const [jobtitle, setjobTitle] = useState("");
+  const [jobtitledata, setJobtitleData] = useState([]);
+  const [jobTitle, setjobTitle] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [rom, setRom] = useState("");
@@ -34,8 +35,8 @@ const JobPosting = () => {
     if (!name.trim()) {
       errors.name = "Name of office is required";
     }
-    if (!jobtitle.trim()) {
-      errors.jobtitle = "Job title is required";
+    if (!jobTitle.trim()) {
+      errors.jobTitle = "Job title is required";
     }
     if (!address.trim()) {
       errors.address = "Physical Address is required";
@@ -87,56 +88,62 @@ const JobPosting = () => {
       setErrors(errors);
       return;
     }
-    // Form is valid, submit it
-    console.log("Job Title: ", jobtitle);
-    console.log("Name: ", name);
-    console.log("Physical Address: ", address);
-    console.log("ROM: ", rom);
-    console.log("Date: ", date);
-    console.log("Exp: ", exp);
-    console.log("Pay Range: ", payRange);
-    console.log("Full / Part Time : ", fulltime);
-    console.log("Schedule : ", schedule);
-    console.log("Staff Number : ", staffnum);
-    console.log("Operation : ", operation);
-    console.log("Equipment : ", equipment);
-    console.log("Skills : ", skills);
-    console.log("Unique Locations : ", uniqLoc);
-    console.log("Office Dynamics : ", offcdyn);
-    console.log("SJob Desc : ", jobdesc);
-    
-    
-    
+
+        const form = e.target;
+        const formData = new FormData(form);
+        
+        fetch(API_url + 'jobposting', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data.status);
+          if(data.status === '200'){
+              navigate(`../../thank-you`);
+              //alert("Data save successfully") ;
+          }
+      })
+      .catch(error => console.error(error));
     
   };
 
-  const handlechange = e => {
-    setErrors({});
-    if (e.target.name == "jobtitle") setjobTitle(e.target.value);
-    if (e.target.name == "name") setName(e.target.value);
-    if (e.target.name == "address") setAddress(e.target.value);
-    if (e.target.name == "rom") setRom(e.target.value);
-    if (e.target.name == "date") setDate(e.target.value);
-    if (e.target.name == "exp") setExp(e.target.value);
-    if (e.target.name == "payRange") setPayRange(e.target.value);
-    if (e.target.name == "fulltime") setFullTime(e.target.value);
-    if (e.target.name == "schedule") setSchedule(e.target.value);
-    if (e.target.name == "staffnum") setStaffNum(e.target.value);
-    if (e.target.name == "operation") setOperation(e.target.value);
-    if (e.target.name == "equipment") setEquipment(e.target.value);
-    if (e.target.name == "skills") setSkills(e.target.value);
-    if (e.target.name == "uniqLoc") setUniqLoc(e.target.value);
-    if (e.target.name == "offcdyn") setOffcDyn(e.target.value);
-    if (e.target.name == "jobdesc") setJobDesc(e.target.value);
-    if (e.target.name == "date") setDate(e.target.value);
-    if (e.target.name == "date") setDate(e.target.value);
-
-  }
+  // const handlechange = e => {
+  //   setErrors({});
+  //   if (e.target.name == "jobtitle") setjobTitle(e.target.value);
+  //   if (e.target.name == "name") setName(e.target.value);
+  //   if (e.target.name == "address") setAddress(e.target.value);
+  //   if (e.target.name == "rom") setRom(e.target.value);
+  //   if (e.target.name == "date") setDate(e.target.value);
+  //   if (e.target.name == "exp") setExp(e.target.value);
+  //   if (e.target.name == "payRange") setPayRange(e.target.value);
+  //   if (e.target.name == "fulltime") setFullTime(e.target.value);
+  //   if (e.target.name == "schedule") setSchedule(e.target.value);
+  //   if (e.target.name == "staffnum") setStaffNum(e.target.value);
+  //   if (e.target.name == "operation") setOperation(e.target.value);
+  //   if (e.target.name == "equipment") setEquipment(e.target.value);
+  //   if (e.target.name == "skills") setSkills(e.target.value);
+  //   if (e.target.name == "uniqLoc") setUniqLoc(e.target.value);
+  //   if (e.target.name == "offcdyn") setOffcDyn(e.target.value);
+  //   if (e.target.name == "jobdesc") setJobDesc(e.target.value);
+  //   if (e.target.name == "date") setDate(e.target.value);
+  //   if (e.target.name == "date") setDate(e.target.value);
+ 
+  // }
+  
   let API_url = window.myGlobalVar ;
+  let navigate = useNavigate();
+
   useEffect(() => {
     fetch(API_url + "officedata")
       .then((response) => response.json())
       .then((data) => setOptions(data));
+  }, []);
+
+  useEffect(() => {
+    fetch(API_url + "jobtitle")
+      .then((jobresponse) => jobresponse.json())
+      .then((jobdata) => setJobtitleData(jobdata));
   }, []);
 
   const handleofficehange = (event) => {
@@ -145,12 +152,31 @@ const JobPosting = () => {
       .then(response => response.json())
       .then(data => {
         setAddress(data.address);
-        setRom(data.rom);
+        
+        if(jobTitle == 2 || jobTitle == 5)
+        {
+          setRom("Kelse");
+
+        }else{
+          setRom(data.rom);
+        }
       })
       .catch(error => {
         console.log(error);
       });
 
+  };
+  const handlejobtitlchange = (event) => {
+    
+    setjobTitle(event.target.value) ;
+
+    if(event.target.value == 2 || event.target.value == 5)
+    {
+      setRom("Kelse");
+
+    }else{
+      setRom("");
+    }
   };
   return (
     <div className="job-posting-form-outer my-5 p-5">
@@ -159,22 +185,15 @@ const JobPosting = () => {
           <div className="row">
             <div className="col-sm-6">
               <label htmlFor="jobtitle">Job Title*</label>
-              <select
-                id="jobtitle"
-                name="jobtitle"
-                value={jobtitle}
-                onChange={(e) => handlechange(e)}>
-                <option value="">Select Job Title</option>
-                <option value="Dental Assistant">Dental Assistant	</option>
-                <option value="dentist">Dentist</option>
-                <option value="EFDA">EFDA</option>
-                <option value="Front Desk">Front Desk</option>
-                <option value="Hygienists">Hygienists</option>
-                <option value="Scheduling Coordinator">Scheduling Coordinator</option>
-                <option value="Patient Care Coordinator">Patient Care Coordinator</option>
-                <option value="Accounts Recievable Specialist">Accounts Recievable Specialist</option>
+             
+              <select id="jobtitle" name="jobtitle" onChange={handlejobtitlchange}>
+                <option value="">Select an option</option>
+                {jobtitledata.map((jobitem) => (
+                  <option key={jobitem.id} value={jobitem.id}>{jobitem.jobtitle}</option>
+                ))}
               </select>
-              {errors.jobtitle && <div className="error">{errors.jobtitle}</div>}
+
+              {errors.jobTitle && <div className="error">{errors.jobTitle}</div>}
             </div>
 
             <div className="col-sm-6">
@@ -296,7 +315,7 @@ const JobPosting = () => {
               <input
                 type="text"
                 id="operation"
-                name="no_of_ operatories"
+                name="no_of_operatories"
                 value={operation}
                 onChange={(e) => setOperation(e.target.value)}
               />

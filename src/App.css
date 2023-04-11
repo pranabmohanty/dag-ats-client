@@ -29,6 +29,10 @@
 .create-account a{
   color: dodgerblue;
 }
-div.error{
-  color:#ff0000;
+.thank-container{
+  width: 100%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
