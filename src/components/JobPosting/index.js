@@ -100,6 +100,7 @@ const JobPosting = () => {
         .then(data => {
           console.log(data.status);
           if(data.status === '200'){
+          
               navigate(`../../thank-you`);
               //alert("Data save successfully") ;
           }

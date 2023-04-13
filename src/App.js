@@ -7,6 +7,7 @@ import Login from './components/Login';
 import JobPosting from './components/JobPosting';
 import Header from './Header';
 import Thankyou from './Thankyou' ;
+import JobDetails from './components/JobListing/JobDetails';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import {BrowserRouter as Router, Routes,Route } from 'react-router-dom'; 
@@ -21,6 +22,7 @@ function App() {
          <Route path="/register" element={<Registration/>} /> 
          <Route path="/dashboard" element={<Dashboard/>} />
          <Route path="/thank-you" element={<Thankyou/>} />
+         <Route path="/jobdetails" element={<JobDetails/>} />
       </Routes> 
       
 

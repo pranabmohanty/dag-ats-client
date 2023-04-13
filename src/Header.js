@@ -10,8 +10,8 @@ const Header=()=>{
     navigate(`/login`);
   }
     return(
-        <nav class="navbar navbar-expand-lg">
-        <span class="navbar-text">
+        <nav className="navbar navbar-expand-lg">
+        <span className="navbar-text">
 
              {userrole ? (<Link to='' onClick={LogOut}>LogOut</Link> ) : null } 
             

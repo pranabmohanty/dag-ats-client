@@ -41,3 +41,10 @@
     display: block;
     width: 100%;
 }
+.Job-info.viewmore{
+  cursor: pointer;
+  text-decoration: underline;
+}
+.me-2{
+  width: 200px;
+}
