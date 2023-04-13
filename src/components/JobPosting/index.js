@@ -276,14 +276,12 @@ const JobPosting = () => {
             </div>
 
             <div className="col-sm-6">
-              <label htmlFor="fulltime">Full/Part-Time?</label>
-              <input
-                type="text"
-                id="fulltime"
-                name="job_time"
-                value={fulltime}
-                onChange={(e) => setFullTime(e.target.value)}
-              />
+              <label htmlFor="fulltime">Job Type</label>
+              <select name="job_time" id="fulltime" onChange={(e) => setFullTime(e.target.value)}>
+                <option value="">Select an option</option>
+                <option value="Full-Time">Full Time</option>
+                <option value="Part-Time">Part Time</option>
+              </select>
               {errors.fulltime && <div className="error">{errors.fulltime}</div>}
             </div>
 

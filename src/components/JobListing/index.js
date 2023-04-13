@@ -5,17 +5,18 @@ import { useNavigate }  from "react-router-dom";
 import './index.css' ;
 const JobListing=()=>{
 
-  
+  var currentuser = localStorage.getItem('username');
+
 
     const [jobList, setjobList] = useState([]);
     const [romList, setromList] = useState([]);
 
     let API_url = window.myGlobalVar ;
-   
+    let user = '' ;
       let navigate = useNavigate();
-
+      
     useEffect(() => {
-        fetch(API_url + "joblisting")
+        fetch(`${API_url}joblisting/${currentuser}`)
           .then((jobresponse) => jobresponse.json())
           .then((jobdata) => setjobList(jobdata));
       }, []);
@@ -42,11 +43,21 @@ const JobListing=()=>{
     
       };
 
+      {romList.map((item) => (
+        item.rom == currentuser ?(
+          user = currentuser 
+          
+        ) : (
+          null
+        )
+   ))}
+
     return (
         <div className='container my-5 px-0'>
             <div className='jobList'>
                 <div className='d-flex align-items-center justify-content-end mb-4'>
-                 
+                   
+                    {user == '' ? (
                     <select className="me-2"  onChange={handleromchange}>
                         <option value="">Select ROM</option>
                         <option value="all">All</option>
@@ -54,6 +65,7 @@ const JobListing=()=>{
                         <option key={item.rom} value={item.rom}>{item.rom}</option>
                         ))}
                     </select>
+                 ) : null}
                 </div>
                 {jobList ? (
                 <table>

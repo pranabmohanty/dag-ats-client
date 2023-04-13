@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import './index.css' ;
 
 const JobDetails = () => {
@@ -6,7 +7,9 @@ const JobDetails = () => {
   const [jobDetail, setjobDetail] = useState([]);
 
   var userrole = localStorage.getItem('role');
-  
+
+  let navigate = useNavigate();
+
   let API_url = window.myGlobalVar ;
  
   const search = window.location.search;
@@ -19,6 +22,22 @@ const JobDetails = () => {
       .then((jobdata) => setjobDetail(jobdata));
   }, []);
 
+  const handlerjobstatus = (event) => {
+    
+    fetch(`${API_url}jobapprove/${jobid}/${event}`)
+    .then(response => response.json())
+    .then(data => {
+      if(data.status === '200'){
+         alert('Thank You');
+         navigate(`../../Dashboard`);
+        }else  {
+            alert('Please try again'); 
+        }
+       })
+    .catch(error => {
+      console.log(error);
+    });
+  }
 
   return(
     <div className="jobDetails-outer my-5 p-5">
@@ -136,12 +155,23 @@ const JobDetails = () => {
         <div className="job-Data">{jobDetail.job_description}</div>
         </div>
       </div>
-      <div className="row justify-content-center">
-        <div className="col-sm-4 flex-wrap text-center align-items-center d-flex justify-content-between mb-4">
-          <button className="bg-success">Approve</button>
-          <button className="bg-danger">Reject</button>
-        </div>
+      
+        {jobDetail.status ? (
+          <div className="col-sm-12">
+            <div>
+                <div className="Job-Title">Job Status</div>
+                <div className="job-Data">{jobDetail.status}</div>
+            </div>
+          </div>
+        ):(
+      <div className="row justify-content-center">  
+          <div className="col-sm-4 flex-wrap text-center align-items-center d-flex justify-content-between mb-4">
+          <button className="bg-success" onClick={() => handlerjobstatus(1)}>Approve</button>
+          <button className="bg-danger" onClick={() => handlerjobstatus(2)}>Reject</button>
+          </div>
       </div>
+        )}
+        
     </div>
   </div>
   ):(
