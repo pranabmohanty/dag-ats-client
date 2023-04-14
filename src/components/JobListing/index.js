@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import Axios from 'axios';
 import { useNavigate }  from "react-router-dom";
 
 import './index.css' ;
@@ -10,6 +10,7 @@ const JobListing=()=>{
 
     const [jobList, setjobList] = useState([]);
     const [romList, setromList] = useState([]);
+    const [currentRom, setcurrentRom] = useState("");
 
     let API_url = window.myGlobalVar ;
     let user = '' ;
@@ -43,23 +44,41 @@ const JobListing=()=>{
     
       };
 
-      {romList.map((item) => (
-        item.rom == currentuser ?(
-          user = currentuser 
+      const handleDownloadCSV = () => {
+        Axios.get(`${API_url}downloadcsv/${currentuser}`)
+          .then(response => {
+            const blob = new Blob([response.data], {type: 'text/csv'});
+            const downloadUrl = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = 'job_record.csv';
+            link.click();
+            URL.revokeObjectURL(downloadUrl);
+          })
+          .catch(error => {
+            console.error('Failed to download CSV:', error);
+          });
+      };
+
+  //     {romList.map((item) => (
+  //       item.rom == currentuser ?(
+  //         user = currentuser 
           
-        ) : (
-          null
-        )
-   ))}
+  //       ) : (
+  //         null
+  //       )
+  //  ))}
 
     return (
         <div className='container my-5 px-0'>
             <div className='jobList'>
                 <div className='d-flex align-items-center justify-content-end mb-4'>
-                   
-                    {user == '' ? (
+                <button className="csv_button" onClick={handleDownloadCSV}>
+                   Download CSV
+                </button>
+                    {currentuser == 'Kelsea' ? (
                     <select className="me-2"  onChange={handleromchange}>
-                        <option value="">Select ROM</option>
+                        <option value="all">Select ROM</option>
                         <option value="all">All</option>
                         {romList.map((item) => (
                         <option key={item.rom} value={item.rom}>{item.rom}</option>

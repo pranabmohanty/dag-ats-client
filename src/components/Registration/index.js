@@ -8,7 +8,7 @@ const Registration=(props)=>{
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [role, setRole] = useState("");
+  //const [role, setRole] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [errors, setErrors] = useState({});
@@ -26,9 +26,9 @@ const Registration=(props)=>{
           errors.lastName = "Last Name is required";
         }
 
-        if (!role.trim()) {
-          errors.role = "Role is required";
-        }
+        // if (!role.trim()) {
+        //   errors.role = "Role is required";
+        // }
 
         if (!password.trim()) {
           errors.password = "Password is required";
@@ -68,7 +68,7 @@ const Registration=(props)=>{
         if (event.target.name == "first_name") setFirstName(event.target.value);
         if (event.target.name == "last_name") setLastName(event.target.value);
         if (event.target.name == "email") setEmail(event.target.value);
-        if (event.target.name == "role") setRole(event.target.value);
+        // if (event.target.name == "role") setRole(event.target.value);
         if (event.target.name == "password") setPassword(event.target.value);
       }
 
@@ -81,7 +81,7 @@ const Registration=(props)=>{
 ) : (
           <form onSubmit={handleSubmit}>
           <div className="row">
-              <div className="col-md-12 text-center"><h1>Register</h1></div>
+              <div className="col-md-12 text-center"><h1>Recruiter Register</h1></div>
           </div>
           <div className="row">
               <div className="col-md-6">First Name</div>
@@ -107,7 +107,7 @@ const Registration=(props)=>{
                 {errors.email && <div className="error">{errors.email}</div>}
               </div>
           </div>
-          <div className="row">
+          {/* <div className="row">
               <div className="col-md-6">Role</div>
               <div className="col-md-6">
               <select name="role"  onChange={(event) => handlechange(event)}>
@@ -117,7 +117,8 @@ const Registration=(props)=>{
               </select>
               {errors.role && <div className="error">{errors.role}</div>}
               </div>
-          </div>
+          </div> */}
+          <input type="hidden" name="role" value="recruiter" />
           <div className="row">
               <div className="col-md-6">Password</div>
               <div className="col-md-6">

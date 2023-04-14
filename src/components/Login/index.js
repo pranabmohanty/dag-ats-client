@@ -51,6 +51,7 @@ const Login=(props)=>{
             if(data.status === '200'){
                 window.localStorage.setItem('role', data.role);
                 window.localStorage.setItem('username', data.username);
+                window.localStorage.setItem('userid', data.user_id);
                 navigate(`../../Dashboard`);
             }else  {
                 alert('Invalid User'); 

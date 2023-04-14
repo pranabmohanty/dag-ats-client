@@ -9,11 +9,14 @@ const Header=()=>{
     localStorage.clear();
     navigate(`/login`);
   }
+  const LogIn = ()=>{
+    navigate(`../../login`);
+  }
     return(
         <nav className="navbar navbar-expand-lg">
         <span className="navbar-text">
 
-             {userrole ? (<Link to='' onClick={LogOut}>LogOut</Link> ) : null } 
+             {userrole ? (<Link to='' onClick={LogOut}>LogOut</Link> ) : <Link to='' onClick={LogIn}>Login</Link> } 
             
             </span>
       

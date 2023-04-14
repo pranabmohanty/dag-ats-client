@@ -32,9 +32,8 @@
 .thank-container{
   width: 100%;
   height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
+  margin-top: 100px;
 }
 .navbar-text{
     text-align: right;
@@ -47,4 +46,15 @@
 }
 .me-2{
   width: 200px;
+}
+.csv_button{
+  margin-right: 20px;
+  padding: 10px 23px;
+  border-radius: 3px;
+}
+.jobposting_link{
+  text-decoration: underline;
+  color: #04AA6D;
+  font-size: 18px;
+  cursor: pointer;
 }

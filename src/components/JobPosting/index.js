@@ -26,6 +26,7 @@ const JobPosting = () => {
   
   const [errors, setErrors] = useState({});
 
+  let userid = localStorage.getItem('userid');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -387,6 +388,7 @@ const JobPosting = () => {
             </div>
             <div className="row justify-content-center">
               <div className="col-sm-5 text-center">
+                <input type="hidden" name="create_by" value={userid} />
                 <button type="submit">Submit</button>
               </div>
             </div>
