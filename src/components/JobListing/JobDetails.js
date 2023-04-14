@@ -41,7 +41,7 @@ const JobDetails = () => {
 
   return(
     <div className="jobDetails-outer my-5 p-5">
-      {userrole == 'rom' ? (
+      {userrole == 'rom' || userrole == 'admin' ? (
     <div className="jobDetails my-5 p-5">
     <div className="row">
       <div className="col-sm-6">
