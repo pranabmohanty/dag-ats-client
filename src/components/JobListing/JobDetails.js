@@ -156,7 +156,7 @@ const JobDetails = () => {
         </div>
       </div>
       
-        {jobDetail.status ? (
+        {(jobDetail.status && jobDetail.status != 'Pending') ? (
           <div className="col-sm-12">
             <div>
                 <div className="Job-Title">Job Status</div>
