@@ -51,6 +51,11 @@
   margin-right: 20px;
   padding: 10px 23px;
   border-radius: 3px;
+  background-image: url('./assets/images/csv_icon.png');
+  background-repeat: no-repeat;
+  background-position: 97%;
+  background-size: 20%;
+  width: 150px;
 }
 .jobposting_link{
   text-decoration: underline;
