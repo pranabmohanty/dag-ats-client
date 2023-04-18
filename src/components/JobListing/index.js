@@ -74,7 +74,7 @@ const JobListing=()=>{
             <div className='jobList'>
                 <div className='d-flex align-items-center justify-content-end mb-4'>
                 <button className="csv_button" onClick={handleDownloadCSV}>
-                   Download CSV
+                   Download
                 </button>
                     {currentuser == 'Kelsea' ? (
                     <select className="me-2"  onChange={handleromchange}>
