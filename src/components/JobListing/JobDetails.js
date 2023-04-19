@@ -34,6 +34,9 @@ const JobDetails = () => {
       if(data.status === '200'){
          alert('Thank You');
          navigate(`../../Dashboard`);
+        } else if(data.status === '201'){
+          alert('Reject');
+          navigate(`../../Dashboard`);
         }else  {
             alert('Please try again'); 
         }
