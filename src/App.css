@@ -63,3 +63,8 @@
   font-size: 18px;
   cursor: pointer;
 }
+.login_link{
+  border-bottom: 1px solid blue;
+  color: blue;
+  cursor: pointer;
+}

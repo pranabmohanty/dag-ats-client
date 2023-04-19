@@ -15,6 +15,10 @@ const JobDetails = () => {
   const search = window.location.search;
   const params = new URLSearchParams(search);
   const jobid = params.get('id');
+  
+  const LogIn = ()=>{
+    navigate(`../../login`);
+  }
 
   useEffect(() => {
     fetch(`${API_url}jobdetails/${jobid}`)
@@ -175,7 +179,7 @@ const JobDetails = () => {
     </div>
   </div>
   ):(
-    <div><h2>Please Login to access this page.</h2></div>
+    <div><h2>Please <span onClick={LogIn} className="login_link">Login</span> to access this page.</h2></div>
   )}
   </div>
   )

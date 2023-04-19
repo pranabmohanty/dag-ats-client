@@ -16,7 +16,7 @@ const Header=()=>{
         <nav className="navbar navbar-expand-lg">
         <span className="navbar-text">
 
-             {userrole ? (<Link to='' onClick={LogOut}>LogOut</Link> ) : <Link to='' onClick={LogIn}>Login</Link> } 
+             {userrole ? (<Link to='' onClick={LogOut}>LogOut</Link> ) : null } 
             
             </span>
       
