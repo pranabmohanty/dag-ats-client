@@ -11,6 +11,7 @@ const Registration=(props)=>{
   //const [role, setRole] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [emailerror, setEmailError] = useState("");
   const [errors, setErrors] = useState({});
   let API_url = window.myGlobalVar ;
   let navigate = useNavigate();
@@ -54,13 +55,15 @@ const Registration=(props)=>{
           body: formData
         })
         .then(response => response.json())
-        .then(data => {
-          console.log(data.status);
-          if(data.status === '200'){
+        .then(responsedata => {
+          console.log(responsedata)
+          if(responsedata.status === 'error'){
+            setEmailError(responsedata.message);
+          }else {
               navigate(`../../login`);
           }
       })
-      .catch(error => console.error(error));
+      .catch(errormsg => console.error(errormsg));
       }
 
       const handlechange = event => {
@@ -105,6 +108,7 @@ const Registration=(props)=>{
                 <input type="text" name="email"  placeholder="Email" className="form-control" 
                 onChange={(event) => setEmail(event.target.value)}/>
                 {errors.email && <div className="error">{errors.email}</div>}
+                {emailerror && <div className="error">{emailerror}</div>}
               </div>
           </div>
           {/* <div className="row">
