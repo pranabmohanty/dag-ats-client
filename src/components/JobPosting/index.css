@@ -10,7 +10,7 @@ label {
 label span {
     color: #818181;
 }
-input,select{
+input{
     text-align: left;
     -webkit-appearance: none;
     -moz-appearance: none;
